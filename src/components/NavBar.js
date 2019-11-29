@@ -9,27 +9,7 @@ export default class NavBar extends Component {
     render() {
         let user = localStorage.getItem('user')
 
-        if (!user) {
-            return (
-                <Navbar expand="md" className="bg-success justify-content-between">
-                    <Navbar.Brand>
-                        Yosua's Todo
-                </Navbar.Brand>
-                    <Nav>
-                        <Nav.Item>
-                            <Link to="/" className="nav-link">
-                                Sign Up
-                            </Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Link to="/sign-in" className="nav-link">
-                                Sign In
-                            </Link>
-                        </Nav.Item>
-                    </Nav>
-                </Navbar>
-            )
-        } else {
+        if (user) {
             return (
                 <Navbar expand="md" className="bg-success justify-content-between" style={{
                     color: '#ffffff',
@@ -48,6 +28,26 @@ export default class NavBar extends Component {
                             <Link to="/log-out" className="nav-link">
                                 Log Out
                         </Link>
+                        </Nav.Item>
+                    </Nav>
+                </Navbar>
+            )
+        } else {
+            return (
+                <Navbar expand="md" className="bg-success justify-content-between">
+                    <Navbar.Brand>
+                        Yosua's Todo
+                </Navbar.Brand>
+                    <Nav>
+                        <Nav.Item>
+                            <Link to="/" className="nav-link">
+                                Sign Up
+                            </Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Link to="/log-in" className="nav-link">
+                                Sign In
+                            </Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar>
