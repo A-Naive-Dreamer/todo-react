@@ -15,9 +15,11 @@ export default class NavBar extends Component {
                     color: '#ffffff',
                     fontWeight: 900
                 }}>
-                    <Navbar.Brand>
+                    <Navbar.Brand className="display-4" style={{
+                        fontFamily: 'Norican'
+                    }}>
                         Yosua's Todo
-                </Navbar.Brand>
+                    </Navbar.Brand>
                     <Nav>
                         <Nav.Item>
                             <Link to="/home" className="nav-link">
@@ -35,7 +37,9 @@ export default class NavBar extends Component {
         } else {
             return (
                 <Navbar expand="md" className="bg-success justify-content-between">
-                    <Navbar.Brand>
+                    <Navbar.Brand className="display-4" style={{
+                        fontFamily: 'Norican'
+                    }}>
                         Yosua's Todo
                 </Navbar.Brand>
                     <Nav>

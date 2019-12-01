@@ -38,7 +38,7 @@ export default class Item2 extends Component {
 
     render() {
         return (
-            <ListGroup.Item variant="success">
+            <ListGroup.Item action variant="success">
                 <Row>
                     <Col xs={{ span: 4, order: 1 }}>
                         <div style={{

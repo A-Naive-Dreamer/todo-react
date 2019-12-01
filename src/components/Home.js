@@ -14,6 +14,7 @@ import Item1 from './Item1'
 import Item2 from './Item2'
 import NavBar from './NavBar'
 import Add from '../assets/images/add.png'
+import Background from '../assets/images/background-3.jpg'
 
 export default class Home extends Component {
     constructor(props) {
@@ -24,7 +25,8 @@ export default class Home extends Component {
             newTodo: '',
             todoList: [],
             isFullscreen: false,
-            keywords: ''
+            keywords: '',
+            isUncompletedTab: true
         }
 
         this.deleteTodo = this.deleteTodo.bind(this)
@@ -33,6 +35,13 @@ export default class Home extends Component {
         this.addTodo = this.addTodo.bind(this)
         this.checkOne = this.checkOne.bind(this)
         this.goToFullscreen = this.goToFullscreen.bind(this)
+        this.changeTab = this.changeTab.bind(this)
+    }
+
+    changeTab() {
+        this.setState({
+            isUncompletedTab: !this.state.isUncompletedTab
+        })
     }
 
     goToFullscreen() {
@@ -123,10 +132,22 @@ export default class Home extends Component {
     render() {
         return (
             <div style={{
-                backgroundColor: '#ffffff'
+                backgroundColor: '#ffffff',
+                backgroundImage: `url(${Background})`,
+                height: window.innerHeight + 'px'
             }}>
                 <NavBar />
-                <Button variant="outline-success" block onClick={this.goToFullscreen} style={{ margin: '10px' }}>
+                <Button
+                    variant="warning"
+                    block={true}
+                    onClick={this.goToFullscreen}
+                    style={{
+                        color: '#ffffff',
+                        fontWeight: 900,
+                        width: '90%',
+                        margin: '10px auto'
+                    }}
+                >
                     {
                         this.state.isFullscreen ?
                             'Exit Fullscreen' :
@@ -148,9 +169,24 @@ export default class Home extends Component {
                     </FormGroup>
                 </Form>
                 <Row>
-                    <Col md={{ span: 6, order: 1 }} xs={{ span: 12, order: 1 }}>
+                    <Col
+                        md={{
+                            span: 6,
+                            order: 1
+                        }}
+                        xs={{
+                            span: 12,
+                            order: 1
+                        }}
+                    >
                         <Form>
-                            <h1 className="text-center text-danger">
+                            <h1
+                                className="text-center display-4 text-danger"
+                                style={{
+                                    fontFamily: 'Aladin',
+                                    backgroundColor: 'rgba(100, 100, 100, 0.75)',
+                                }}
+                            >
                                 {
                                     this.state.user.firstName + ' ' + this.state.user.lastName
                                 }
@@ -163,40 +199,146 @@ export default class Home extends Component {
                                     placeholder="New Todo"
                                     onChange={e => this.handleChange(e)}
                                 />
-                                <Button block variant="primary" onClick={this.addTodo}>
-                                    <Image src={Add} alt="Add" roundedCircle style={{
-                                        width: '25px',
-                                        height: 'auto'
-                                    }} />
+                                <Button
+                                    block={true}
+                                    variant="primary"
+                                    onClick={this.addTodo}
+                                >
+                                    <Image
+                                        src={Add}
+                                        alt="Add"
+                                        roundedCircle={true}
+                                        style={{
+                                            width: '25px',
+                                            height: 'auto'
+                                        }}
+                                    />
                                 </Button>
                             </FormGroup>
                         </Form>
-                        <h2 className="text-center text-success">
-                            Uncompleted Task
-                        </h2>
-                        <ListGroup className="mx-auto">
-                            {
-                                this.state.todoList.map(item => {
-                                    if (item.status === 'uncompleted' && item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
-                                        return <Item1 todo={item} handleDelete={this.deleteTodo} handleCheck={this.checkOne} handleUpdate={this.updateTodo} />
-                                    }
-                                })
-                            }
-                        </ListGroup>
                     </Col>
-                    <Col md={{ span: 6, order: 2 }} xs={{ span: 12, order: 2 }}>
-                        <h2 className="text-center text-success">
-                            Completed Task
-                        </h2>
-                        <ListGroup className="mx-auto">
-                            {
-                                this.state.todoList.map(item => {
-                                    if (item.status === 'completed' && item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
-                                        return <Item2 todo={item} handleDelete={this.deleteTodo} />
-                                    }
-                                })
-                            }
-                        </ListGroup>
+                    <Col
+                        md={{
+                            span: 6,
+                            order: 2
+                        }}
+                        xs={{
+                            span: 12, order: 2
+                        }}
+                    >
+                        <Row noGutters={true}>
+                            <Col
+                                xs={{
+                                    span: 12,
+                                    order: 1
+                                }}
+                                md={{
+                                    span: 6,
+                                    order: 1
+                                }}
+                            >
+                                <Button
+                                    block={true}
+                                    className="bg-dark"
+                                    style={{
+                                        fontFamily: 'Calistoga',
+                                        padding: '10px 0'
+                                    }}
+                                    onClick={() => {
+                                        this.setState({
+                                            isUncompletedTab: true
+                                        })
+                                    }}
+                                >
+                                    Uncompleted Task
+                                </Button>
+                            </Col>
+                            <Col xs={{
+                                span: 12,
+                                order: 1
+                            }}
+                                md={{
+                                    span: 6,
+                                    order: 1
+                                }}
+                            >
+                                <Button
+                                    block={true}
+                                    className="bg-dark"
+                                    style={{
+                                        fontFamily: 'Calistoga',
+                                        padding: '10px 0'
+                                    }}
+                                    onClick={() => {
+                                        this.setState({
+                                            isUncompletedTab: false
+                                        })
+                                    }}
+                                >
+                                    Completed Task
+                                </Button>
+                            </Col>
+                        </Row>
+                        <div style={{
+                            display: this.state.isUncompletedTab ? 'block' : 'none'
+                        }}>
+                            <h2
+                                className="text-center text-warning"
+                                style={{
+                                    backgroundColor: 'rgba(100, 100, 100, 0.75)',
+                                    fontFamily: 'Calistoga',
+                                    padding: '10px 0'
+                                }}
+                            >
+                                Uncompleted Task
+                            </h2>
+                            <ListGroup 
+                                className="mx-auto"
+                                style={{
+                                    height: '305px',
+                                    overflow: 'auto'
+                                }}
+                            >
+                                {
+                                    this.state.todoList.map(item => {
+                                        if (item.status === 'uncompleted' &&
+                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            return <Item1 todo={item} handleDelete={this.deleteTodo} handleCheck={this.checkOne} handleUpdate={this.updateTodo} />
+                                        }
+                                    })
+                                }
+                            </ListGroup>
+                        </div>
+                        <div style={{
+                            display: this.state.isUncompletedTab ? 'none' : 'block'
+                        }}>
+                            <h2
+                                className="text-center text-success"
+                                style={{
+                                    backgroundColor: 'rgba(100, 100, 100, 0.75)',
+                                    fontFamily: 'Calistoga',
+                                    padding: '10px 0'
+                                }}
+                            >
+                                Completed Task
+                            </h2>
+                            <ListGroup 
+                                className="mx-auto"
+                                style={{
+                                    height: '305px',
+                                    overflow: 'auto'
+                                }}
+                            >
+                                {
+                                    this.state.todoList.map(item => {
+                                        if (item.status === 'completed' &&
+                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            return <Item2 todo={item} handleDelete={this.deleteTodo} />
+                                        }
+                                    })
+                                }
+                            </ListGroup>
+                        </div>
                     </Col>
                 </Row>
             </div>

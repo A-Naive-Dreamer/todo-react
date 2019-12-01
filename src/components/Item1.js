@@ -25,6 +25,12 @@ export default class Item1 extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.makeVisible = this.makeVisible.bind(this)
+        this.updateTodo = this.updateTodo.bind(this)
+    }
+
+    updateTodo() {
+        this.props.handleUpdate(this.props.todo.id, this.state.newTodo)
+        this.makeVisible()
     }
 
     handleChange(e) {
@@ -43,7 +49,7 @@ export default class Item1 extends Component {
 
     render() {
         return (
-            <ListGroup.Item variant="warning">
+            <ListGroup.Item action variant="warning">
                 <Row>
                     <Col xs={{ span: 3, order: 1 }}>
                         <Button variant="outline-success" size="sm" onClick={() => this.props.handleCheck(this.props.todo.id)} style={{ margin: '0 10px' }}>
@@ -77,7 +83,7 @@ export default class Item1 extends Component {
                                     placeholder="Type new value of todo here..."
                                     onChange={e => this.handleChange(e)}
                                 />
-                                <Button variant="outline-info" block onClick={() => this.props.handleUpdate(this.props.todo.id, this.state.newTodo)}>
+                                <Button variant="outline-info" block onClick={this.updateTodo}>
                                     Update
                                 </Button>
                             </FormGroup>
