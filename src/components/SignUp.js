@@ -66,7 +66,7 @@ class SignUp extends Component {
             return null
         }
 
-        let path = `${process.env.REACT_APP_API}/user/sign-up`
+        let path = `${process.env.REACT_APP_API}/users/sign-up`
 
         axios.post(path, this.state)
             .then(result => {

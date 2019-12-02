@@ -52,7 +52,7 @@ class Home extends Component {
     }
 
     addTodo() {
-        let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}`
+        let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}`
 
         axios
             .post(path, { todos: this.state.newTodo })
@@ -77,7 +77,7 @@ class Home extends Component {
         })
             .then(decision => {
                 if (decision) {
-                    let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
+                    let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}/${idx}`
 
                     axios
                         .put(path, { todos: newValue })
@@ -105,7 +105,7 @@ class Home extends Component {
         })
             .then(decision => {
                 if (decision) {
-                    let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
+                    let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}/${idx}`
 
                     axios
                         .delete(path)
@@ -126,7 +126,7 @@ class Home extends Component {
     }
 
     checkOne(idx) {
-        let path = `${process.env.REACT_APP_API}/todo/completed/${this.state.user.id}/${idx}`
+        let path = `${process.env.REACT_APP_API}/todos/completed/${this.state.user.id}/${idx}`
 
         axios
             .put(path)
@@ -145,7 +145,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}`
+        let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}`
 
         axios
             .get(path)

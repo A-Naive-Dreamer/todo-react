@@ -60,7 +60,7 @@ class LogIn extends Component {
             return null
         }
 
-        let path = `${process.env.REACT_APP_API}/user/log-in`
+        let path = `${process.env.REACT_APP_API}/users/log-in`
 
         axios.post(path, this.state)
             .then(result => {
