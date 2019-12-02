@@ -14,6 +14,7 @@ import TeamWork from '../assets/images/teamwork-1.png'
 import NavBar from './NavBar'
 import Background from '../assets/images/background-1.jpg'
 import { withRouter, Link } from 'react-router-dom'
+import swal from 'sweetalert'
 
 class SignUp extends Component {
     constructor(props) {
@@ -48,12 +49,20 @@ class SignUp extends Component {
             this.state.email === '' ||
             this.state.password === ''
         ) {
-            alert('Harap isi semua field!')
+            swal({
+                title: 'Fields Is Empty',
+                text: 'Please fill all field.',
+                icon: 'error'
+            })
             return null
         }
 
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(this.state.email)) {
-            alert('Harap isi format email dengan benar!')
+            swal({
+                title: 'Email Format Is Wrong',
+                text: 'Please fill email field again.',
+                icon: 'error'
+            })
             return null
         }
 
@@ -63,11 +72,20 @@ class SignUp extends Component {
             .then(result => {
                 console.log(result)
                 if (result.data.message === 'Email have been used!') {
-                    alert(result.data.message)
+                    swal({
+                        text: result.data.message,
+                        icon: 'error'
+                    })
                     return null
                 }
 
-                this.props.history.push('/log-in')
+                swal({
+                    title: 'New Account Have Been Added',
+                    icon: 'success'
+                })
+                    .then(decision => {
+                        this.props.history.push('/log-in')
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -75,6 +93,12 @@ class SignUp extends Component {
     }
 
     render() {
+        let user = localStorage.getItem('user')
+
+        if (user) {
+            this.props.history.replace('/home')
+        }
+
         return (
             <div>
                 <NavBar />

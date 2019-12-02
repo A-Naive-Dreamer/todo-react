@@ -12,6 +12,7 @@ import TeamWork from '../assets/images/teamwork-2.png'
 import NavBar from './NavBar'
 import Background from '../assets/images/background-2.jpg'
 import { withRouter, Link } from 'react-router-dom'
+import swal from 'sweetalert'
 
 class LogIn extends Component {
     constructor(props) {
@@ -42,12 +43,20 @@ class LogIn extends Component {
             this.state.email === '' ||
             this.state.password === ''
         ) {
-            alert('Harap isi semua field!')
+            swal({
+                title: 'Fields Is Empty',
+                text: 'Please fill all field.',
+                icon: 'error'
+            })
             return null
         }
 
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(this.state.email)) {
-            alert('Harap isi format email dengan benar!')
+            swal({
+                title: 'Email Format Is Wrong',
+                text: 'Please fill email field again.',
+                icon: 'error'
+            })
             return null
         }
 
@@ -56,12 +65,21 @@ class LogIn extends Component {
         axios.post(path, this.state)
             .then(result => {
                 if (result.data.message === 'Email or password is wrong!') {
-                    alert(result.data.message)
+                    swal({
+                        text: result.data.message,
+                        icon: 'error'
+                    })
                     return null
                 }
 
-                localStorage.setItem('user', JSON.stringify(result.data))
-                this.props.history.push('/home')
+                swal({
+                    title: 'You Will be Redirect to Home Page',
+                    icon: 'success'
+                })
+                    .then(decision => {
+                        localStorage.setItem('user', JSON.stringify(result.data))
+                        this.props.history.push('/home')
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -69,6 +87,12 @@ class LogIn extends Component {
     }
 
     render() {
+        let user = localStorage.getItem('user')
+
+        if (user) {
+            this.props.history.replace('/home')
+        }
+
         return (
             <div>
                 <NavBar />

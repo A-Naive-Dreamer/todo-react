@@ -15,13 +15,15 @@ import Item2 from './Item2'
 import NavBar from './NavBar'
 import Add from '../assets/images/add.png'
 import Background from '../assets/images/background-3.jpg'
+import swal from 'sweetalert'
+import { withRouter } from 'react-router-dom'
 
-export default class Home extends Component {
+class Home extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')),
+            user: JSON.parse(localStorage.getItem('user')) || {},
             newTodo: '',
             todoList: [],
             isFullscreen: false,
@@ -35,13 +37,6 @@ export default class Home extends Component {
         this.addTodo = this.addTodo.bind(this)
         this.checkOne = this.checkOne.bind(this)
         this.goToFullscreen = this.goToFullscreen.bind(this)
-        this.changeTab = this.changeTab.bind(this)
-    }
-
-    changeTab() {
-        this.setState({
-            isUncompletedTab: !this.state.isUncompletedTab
-        })
     }
 
     goToFullscreen() {
@@ -65,32 +60,68 @@ export default class Home extends Component {
                 this.setState({
                     todoList: result.data.data
                 })
+
+                swal({
+                    title: 'Successfully Add Todo',
+                    text: 'New todo have been added.',
+                    icon: 'success'
+                })
             })
     }
 
     updateTodo(idx, newValue) {
-        let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
+        swal({
+            title: 'Are You Sure Want to Update Todo?',
+            icon: 'warning',
+            buttons: true
+        })
+            .then(decision => {
+                if (decision) {
+                    let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
 
-        axios
-            .put(path, { todos: newValue })
-            .then(result => {
-                console.log(result)
-                this.setState({
-                    todoList: result.data.data
-                })
+                    axios
+                        .put(path, { todos: newValue })
+                        .then(result => {
+                            console.log(result)
+                            this.setState({
+                                todoList: result.data.data
+                            })
+
+                            swal({
+                                title: 'Successfully Update Todo',
+                                text: 'Todo have been updated.',
+                                icon: 'success'
+                            })
+                        })
+                }
             })
     }
 
     deleteTodo(idx) {
-        let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
+        swal({
+            title: 'Are You Sure Want to Delete Todo?',
+            icon: 'warning',
+            buttons: true
+        })
+            .then(decision => {
+                if (decision) {
+                    let path = `${process.env.REACT_APP_API}/todo/${this.state.user.id}/${idx}`
 
-        axios
-            .delete(path)
-            .then(result => {
-                console.log(result)
-                this.setState({
-                    todoList: result.data.data
-                })
+                    axios
+                        .delete(path)
+                        .then(result => {
+                            console.log(result)
+                            this.setState({
+                                todoList: result.data.data
+                            })
+
+                            swal({
+                                title: 'Successfully Delete Todo',
+                                text: 'Todo have been deleted.',
+                                icon: 'success'
+                            })
+                        })
+                }
             })
     }
 
@@ -103,6 +134,12 @@ export default class Home extends Component {
                 console.log(result)
                 this.setState({
                     todoList: result.data.data
+                })
+
+                swal({
+                    title: 'Successfully Update Todo',
+                    text: 'Todo have been finished.',
+                    icon: 'success'
                 })
             })
     }
@@ -130,12 +167,19 @@ export default class Home extends Component {
     }
 
     render() {
+        let user = localStorage.getItem('user')
+
+        if (!user) {
+            this.props.history.replace('/')
+        }
+
         return (
             <div style={{
                 backgroundColor: '#ffffff',
                 backgroundImage: `url(${Background})`,
                 height: window.innerHeight + 'px'
-            }}>
+            }
+            }>
                 <NavBar />
                 <Button
                     variant="warning"
@@ -292,7 +336,7 @@ export default class Home extends Component {
                             >
                                 Uncompleted Task
                             </h2>
-                            <ListGroup 
+                            <ListGroup
                                 className="mx-auto"
                                 style={{
                                     height: '305px',
@@ -322,7 +366,7 @@ export default class Home extends Component {
                             >
                                 Completed Task
                             </h2>
-                            <ListGroup 
+                            <ListGroup
                                 className="mx-auto"
                                 style={{
                                     height: '305px',
@@ -341,7 +385,9 @@ export default class Home extends Component {
                         </div>
                     </Col>
                 </Row>
-            </div>
+            </div >
         )
     }
 }
+
+export default withRouter(Home)
