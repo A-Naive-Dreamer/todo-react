@@ -10,9 +10,9 @@ import {
     Image,
     FormText
 } from 'react-bootstrap'
-import TeamWork from '../assets/images/teamwork-1.png'
+import TeamWork from '../../assets/images/teamwork-1.png'
 import NavBar from './NavBar'
-import Background from '../assets/images/background-1.jpg'
+import Background from '../../assets/images/background-1.jpg'
 import { withRouter, Link } from 'react-router-dom'
 import swal from 'sweetalert'
 
@@ -66,7 +66,7 @@ class SignUp extends Component {
             return null
         }
 
-        let path = `${process.env.REACT_APP_API}/users/sign-up`
+        let path = `${process.env.REACT_APP_API_2}/users/sign-up`
 
         axios.post(path, this.state)
             .then(result => {
@@ -84,7 +84,7 @@ class SignUp extends Component {
                     icon: 'success'
                 })
                     .then(decision => {
-                        this.props.history.push('/log-in')
+                        this.props.history.push('/mongoose/log-in')
                     })
             })
             .catch(error => {
@@ -93,10 +93,10 @@ class SignUp extends Component {
     }
 
     render() {
-        let user = localStorage.getItem('user')
+        let user = localStorage.getItem('user2')
 
         if (user) {
-            this.props.history.replace('/home')
+            this.props.history.replace('/mongoose/home')
         }
 
         return (
@@ -169,9 +169,9 @@ class SignUp extends Component {
                         </FormGroup>
                         <FormGroup>
                             <FormText>
-                                <Link to="/log-in">
+                                <Link to="/mongoose/log-in">
                                     Already have an account, click this link.
-                            </Link>
+                                </Link>
                             </FormText>
                         </FormGroup>
                         <FormGroup>

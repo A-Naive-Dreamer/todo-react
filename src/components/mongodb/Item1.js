@@ -9,9 +9,9 @@ import {
     FormControl,
     Button
 } from 'react-bootstrap'
-import Delete from '../assets/images/delete.png'
-import Edit from '../assets/images/edit.png'
-import Check from '../assets/images/check.png'
+import Delete from '../../assets/images/delete.png'
+import Edit from '../../assets/images/edit.png'
+import Check from '../../assets/images/check.png'
 
 export default class Item1 extends Component {
     constructor(props) {
@@ -68,7 +68,7 @@ export default class Item1 extends Component {
                                 Todo -&nbsp;
                             </span>
                             {
-                                this.props.todo.todo
+                                this.props.todo.todos
                             }
                         </div>
                         <Form style={{

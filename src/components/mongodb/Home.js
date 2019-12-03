@@ -13,8 +13,8 @@ import {
 import Item1 from './Item1'
 import Item2 from './Item2'
 import NavBar from './NavBar'
-import Add from '../assets/images/add.png'
-import Background from '../assets/images/background-3.jpg'
+import Add from '../../assets/images/add.png'
+import Background from '../../assets/images/background-6.jpg'
 import swal from 'sweetalert'
 import { withRouter } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            user: JSON.parse(localStorage.getItem('user')) || {},
+            user: JSON.parse(localStorage.getItem('user1')) || {},
             newTodo: '',
             todoList: [],
             isFullscreen: false,
@@ -52,10 +52,10 @@ class Home extends Component {
     }
 
     addTodo() {
-        let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}`
+        let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}`
 
         axios
-            .post(path, { todo: this.state.newTodo })
+            .post(path, { todos: this.state.newTodo })
             .then(result => {
                 this.setState({
                     todoList: result.data.data
@@ -77,10 +77,10 @@ class Home extends Component {
         })
             .then(decision => {
                 if (decision) {
-                    let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}/${idx}`
+                    let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}/${idx}`
 
                     axios
-                        .put(path, { todo: newValue })
+                        .put(path, { todos: newValue })
                         .then(result => {
                             console.log(result)
                             this.setState({
@@ -105,7 +105,7 @@ class Home extends Component {
         })
             .then(decision => {
                 if (decision) {
-                    let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}/${idx}`
+                    let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}/${idx}`
 
                     axios
                         .delete(path)
@@ -126,7 +126,7 @@ class Home extends Component {
     }
 
     checkOne(idx) {
-        let path = `${process.env.REACT_APP_API}/todos/completed/${this.state.user.id}/${idx}`
+        let path = `${process.env.REACT_APP_API_1}/todo/completed/${this.state.user.id}/${idx}`
 
         axios
             .put(path)
@@ -145,7 +145,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}`
+        let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}`
 
         axios
             .get(path)
@@ -167,10 +167,10 @@ class Home extends Component {
     }
 
     render() {
-        let user = localStorage.getItem('user')
+        let user = localStorage.getItem('user1')
 
         if (!user) {
-            this.props.history.replace('/')
+            this.props.history.replace('/mongodb')
         }
 
         return (
@@ -346,7 +346,7 @@ class Home extends Component {
                                 {
                                     this.state.todoList.map(item => {
                                         if (item.status === 'uncompleted' &&
-                                            item.todo.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
                                             return <Item1 todo={item} handleDelete={this.deleteTodo} handleCheck={this.checkOne} handleUpdate={this.updateTodo} />
                                         }
                                     })
@@ -376,7 +376,7 @@ class Home extends Component {
                                 {
                                     this.state.todoList.map(item => {
                                         if (item.status === 'completed' &&
-                                            item.todo.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
                                             return <Item2 todo={item} handleDelete={this.deleteTodo} />
                                         }
                                     })

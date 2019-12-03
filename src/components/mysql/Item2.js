@@ -6,7 +6,7 @@ import {
     Image,
     Button
 } from 'react-bootstrap'
-import Delete from '../assets/images/delete.png'
+import Delete from '../../assets/images/delete.png'
 
 export default class Item2 extends Component {
     constructor(props) {

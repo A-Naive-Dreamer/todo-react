@@ -8,9 +8,9 @@ import {
     Image,
     FormText
 } from 'react-bootstrap'
-import TeamWork from '../assets/images/teamwork-2.png'
+import TeamWork from '../../assets/images/teamwork-2.png'
 import NavBar from './NavBar'
-import Background from '../assets/images/background-2.jpg'
+import Background from '../../assets/images/background-2.jpg'
 import { withRouter, Link } from 'react-router-dom'
 import swal from 'sweetalert'
 
@@ -60,7 +60,7 @@ class LogIn extends Component {
             return null
         }
 
-        let path = `${process.env.REACT_APP_API}/users/log-in`
+        let path = `${process.env.REACT_APP_API_1}/user/log-in`
 
         axios.post(path, this.state)
             .then(result => {
@@ -77,8 +77,8 @@ class LogIn extends Component {
                     icon: 'success'
                 })
                     .then(decision => {
-                        localStorage.setItem('user', JSON.stringify(result.data))
-                        this.props.history.push('/home')
+                        localStorage.setItem('user1', JSON.stringify(result.data))
+                        this.props.history.push('/mongodb/home')
                     })
             })
             .catch(error => {
@@ -87,10 +87,10 @@ class LogIn extends Component {
     }
 
     render() {
-        let user = localStorage.getItem('user')
+        let user = localStorage.getItem('user1')
 
         if (user) {
-            this.props.history.replace('/home')
+            this.props.history.replace('/mongodb/home')
         }
 
         return (
@@ -143,9 +143,9 @@ class LogIn extends Component {
                         </FormGroup>
                         <FormGroup>
                             <FormText>
-                                <Link to="/">
+                                <Link to="/mongodb">
                                     Don't have an account, click this link.
-                            </Link>
+                                </Link>
                             </FormText>
                         </FormGroup>
                         <FormGroup>
