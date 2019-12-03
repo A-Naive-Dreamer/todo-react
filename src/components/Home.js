@@ -55,7 +55,7 @@ class Home extends Component {
         let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}`
 
         axios
-            .post(path, { todos: this.state.newTodo })
+            .post(path, { todo: this.state.newTodo })
             .then(result => {
                 this.setState({
                     todoList: result.data.data
@@ -80,7 +80,7 @@ class Home extends Component {
                     let path = `${process.env.REACT_APP_API}/todos/${this.state.user.id}/${idx}`
 
                     axios
-                        .put(path, { todos: newValue })
+                        .put(path, { todo: newValue })
                         .then(result => {
                             console.log(result)
                             this.setState({
@@ -346,7 +346,7 @@ class Home extends Component {
                                 {
                                     this.state.todoList.map(item => {
                                         if (item.status === 'uncompleted' &&
-                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            item.todo.toLowerCase().includes(this.state.keywords.toLowerCase())) {
                                             return <Item1 todo={item} handleDelete={this.deleteTodo} handleCheck={this.checkOne} handleUpdate={this.updateTodo} />
                                         }
                                     })
@@ -376,7 +376,7 @@ class Home extends Component {
                                 {
                                     this.state.todoList.map(item => {
                                         if (item.status === 'completed' &&
-                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())) {
+                                            item.todo.toLowerCase().includes(this.state.keywords.toLowerCase())) {
                                             return <Item2 todo={item} handleDelete={this.deleteTodo} />
                                         }
                                     })

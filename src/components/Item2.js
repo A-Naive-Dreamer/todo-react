@@ -52,7 +52,7 @@ export default class Item2 extends Component {
                                     Todo -&nbsp;
                             </span>
                                 {
-                                    this.props.todo.todos
+                                    this.props.todo.todo
                                 }
                             </span>
                         </div>

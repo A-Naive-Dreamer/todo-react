@@ -68,7 +68,7 @@ export default class Item1 extends Component {
                                 Todo -&nbsp;
                             </span>
                             {
-                                this.props.todo.todos
+                                this.props.todo.todo
                             }
                         </div>
                         <Form style={{
