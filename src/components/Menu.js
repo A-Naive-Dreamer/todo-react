@@ -4,6 +4,7 @@ import { Button, Row, Col, Carousel } from 'react-bootstrap'
 import Background3 from '../assets/images/background-3.jpg'
 import Background4 from '../assets/images/background-4.jpg'
 import Background5 from '../assets/images/background-5.jpg'
+import Background9 from '../assets/images/background-9.jpg'
 
 export default class Menu extends Component {
     constructor(props) {
@@ -167,6 +168,53 @@ export default class Menu extends Component {
                                             block={true}
                                         >
                                             MySQL
+                                    </Button>
+                                    </Link>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item style={{
+                        backgroundColor: '#505050',
+                        backgroundImage: `url(${Background9})`,
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        height: window.innerHeight + 'px',
+                        width: window.innerWidth + 'px'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '100%'
+                        }}>
+                            <Row noGutters={true} style={{
+                                backgroundColor: 'rgba(64, 64, 64, 0.75)'
+                            }}>
+                                <Col>
+                                    <h1
+                                        className="display-1 text-warning"
+                                        style={{
+                                            fontFamily: 'Lobster',
+                                            fontWeight: 900,
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        Sequelize Todo
+                            </h1>
+                                    <Link
+                                        to="/sequelize"
+                                        style={{
+                                            color: '#ffffff'
+                                        }}
+                                    >
+                                        <Button
+                                            className="font-weight-bolder"
+                                            variant="warning"
+                                            block={true}
+                                        >
+                                            Sequelize
                                     </Button>
                                     </Link>
                                 </Col>
