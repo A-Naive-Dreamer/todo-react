@@ -60,6 +60,10 @@ export default class NavBar extends Component {
                 <Navbar
                     expand="md"
                     className="bg-success justify-content-between"
+                    style={{
+                        color: '#ffffff',
+                        fontWeight: 900
+                    }}
                 >
                     <Navbar.Brand
                         className="display-4"

@@ -75,8 +75,6 @@ class SignUp extends Component {
 
         axios.post(path, this.state)
             .then(result => {
-                console.log(result)
-
                 if (result.data.message === 'Email have been used!') {
                     swal({
                         text: result.data.message,

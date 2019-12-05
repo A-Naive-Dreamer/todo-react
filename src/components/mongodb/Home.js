@@ -26,7 +26,7 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            user: verify() || {},
+            user: verify(localStorage.getItem('token')) || {},
             newTodo: '',
             todoList: [],
             isFullscreen: false,
@@ -57,7 +57,7 @@ class Home extends Component {
     addTodo() {
         let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}`
 
-        AXIOS()
+        AXIOS(localStorage.getItem('token'))
             .post(
                 path,
                 {
@@ -87,7 +87,7 @@ class Home extends Component {
                 if (decision) {
                     let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}/${idx}`
 
-                    AXIOS()
+                    AXIOS(localStorage.getItem('token'))
                         .put(
                             path,
                             {
@@ -95,7 +95,6 @@ class Home extends Component {
                             }
                         )
                         .then(result => {
-                            console.log(result)
                             this.setState({
                                 todoList: result.data.data
                             })
@@ -120,11 +119,9 @@ class Home extends Component {
                 if (decision) {
                     let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}/${idx}`
 
-                    AXIOS()
+                    AXIOS(localStorage.getItem('token'))
                         .delete(path)
                         .then(result => {
-                            console.log(result)
-
                             this.setState({
                                 todoList: result.data.data
                             })
@@ -142,10 +139,9 @@ class Home extends Component {
     checkOne(idx) {
         let path = `${process.env.REACT_APP_API_1}/todo/completed/${this.state.user.id}/${idx}`
 
-        AXIOS()
+        AXIOS(localStorage.getItem('token'))
             .put(path)
             .then(result => {
-                console.log(result)
                 this.setState({
                     todoList: result.data.data
                 })
@@ -161,14 +157,12 @@ class Home extends Component {
     componentDidMount() {
         let path = `${process.env.REACT_APP_API_1}/todo/${this.state.user.id}`
 
-        AXIOS()
+        AXIOS(localStorage.getItem('token'))
             .get(path)
             .then(result => {
                 this.setState({
                     todoList: result.data.data
                 })
-
-                console.log(this.state.todoList)
             })
     }
 
@@ -360,9 +354,16 @@ class Home extends Component {
                                     this.state.todoList.map(item => {
                                         if (
                                             item.status === 'uncompleted' &&
-                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())
+                                            item.todos
+                                                .toLowerCase()
+                                                .includes(this.state.keywords.toLowerCase())
                                         ) {
-                                            return <Item1 todo={item} handleDelete={this.deleteTodo} handleCheck={this.checkOne} handleUpdate={this.updateTodo} />
+                                            return <Item1
+                                                todo={item}
+                                                handleDelete={this.deleteTodo}
+                                                handleCheck={this.checkOne}
+                                                handleUpdate={this.updateTodo}
+                                            />
                                         }
                                     })
                                 }
@@ -392,9 +393,14 @@ class Home extends Component {
                                     this.state.todoList.map(item => {
                                         if (
                                             item.status === 'completed' &&
-                                            item.todos.toLowerCase().includes(this.state.keywords.toLowerCase())
+                                            item.todos
+                                                .toLowerCase()
+                                                .includes(this.state.keywords.toLowerCase())
                                         ) {
-                                            return <Item2 todo={item} handleDelete={this.deleteTodo} />
+                                            return <Item2
+                                                todo={item}
+                                                handleDelete={this.deleteTodo}
+                                            />
                                         }
                                     })
                                 }

@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 
-export const verify = () => {
+export const verify = (sign) => {
     try {
-        const token = JSON.parse(localStorage.getItem('token'))
+        const token = JSON.parse(sign)
 
         let decode = jwt.verify(token, process.env.REACT_APP_JWT_SECRET_KEY)
 
