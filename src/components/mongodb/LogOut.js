@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 class LogOut extends Component {
     render() {
-        localStorage.removeItem('user1')
+        localStorage.removeItem('token')
         this.props.history.replace('/mongodb')
 
         return (

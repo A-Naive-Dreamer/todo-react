@@ -11,7 +11,10 @@ import {
 import TeamWork from '../../assets/images/teamwork-2.png'
 import NavBar from './NavBar'
 import Background from '../../assets/images/background-2.jpg'
-import { withRouter, Link } from 'react-router-dom'
+import {
+    withRouter,
+    Link
+} from 'react-router-dom'
 import swal from 'sweetalert'
 
 class LogIn extends Component {
@@ -48,6 +51,7 @@ class LogIn extends Component {
                 text: 'Please fill all field.',
                 icon: 'error'
             })
+
             return null
         }
 
@@ -57,18 +61,21 @@ class LogIn extends Component {
                 text: 'Please fill email field again.',
                 icon: 'error'
             })
+
             return null
         }
 
         let path = `${process.env.REACT_APP_API_1}/user/log-in`
 
-        axios.post(path, this.state)
+        axios
+            .post(path, this.state)
             .then(result => {
                 if (result.data.message === 'Email or password is wrong!') {
                     swal({
                         text: result.data.message,
                         icon: 'error'
                     })
+
                     return null
                 }
 
@@ -77,7 +84,7 @@ class LogIn extends Component {
                     icon: 'success'
                 })
                     .then(decision => {
-                        localStorage.setItem('user1', JSON.stringify(result.data))
+                        localStorage.setItem('token', JSON.stringify(result.data.token))
                         this.props.history.push('/mongodb/home')
                     })
             })
@@ -87,7 +94,7 @@ class LogIn extends Component {
     }
 
     render() {
-        let user = localStorage.getItem('user1')
+        let user = localStorage.getItem('token')
 
         if (user) {
             this.props.history.replace('/mongodb/home')
@@ -100,7 +107,7 @@ class LogIn extends Component {
                     backgroundImage: `url(${Background})`,
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    bckgroundSize: 'cover',
+                    backgroundSize: 'cover',
                     height: window.innerHeight + 'px',
                     display: 'flex',
                     alignItems: 'center'
@@ -113,11 +120,12 @@ class LogIn extends Component {
                         width: '500px',
                         margin: '0 auto',
                         padding: '25px'
-                    }}
-                    >
+                    }}>
                         <Image
                             className="d-block mx-auto"
-                            roundedCircle src={TeamWork} style={{
+                            roundedCircle
+                            src={TeamWork}
+                            style={{
                                 width: '150px',
                                 height: 'auto',
                                 margin: '0 0 25px 0'
@@ -149,9 +157,14 @@ class LogIn extends Component {
                             </FormText>
                         </FormGroup>
                         <FormGroup>
-                            <Button variant="primary" block type="button" onClick={e => this.submitForm(e)}>
+                            <Button
+                                variant="primary"
+                                block={true}
+                                type="button"
+                                onClick={e => this.submitForm(e)}
+                            >
                                 Log In
-                        </Button>
+                            </Button>
                         </FormGroup>
                     </Form>
                 </div>
