@@ -50,8 +50,8 @@ export default class Item1 extends Component {
     render() {
         return (
             <ListGroup.Item
-                action={true}
                 variant="warning"
+                key={this.props.todo.id}
             >
                 <Row>
                     <Col xs={{

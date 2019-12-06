@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import {
+    BrowserRouter,
+    Switch,
+    Route
+} from 'react-router-dom'
 import { default as HomeMongoDB } from './mongodb/Home'
 import { default as SignUpMongoDB } from './mongodb/SignUp'
 import { default as LogInMongoDB } from './mongodb/LogIn'
@@ -23,55 +27,106 @@ export default class FrontPage extends Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact={true}>
+                    <Route
+                        path="/"
+                        exact={true}
+                    >
                         <Menu />
                     </Route>
-                    <Route path="/mongodb" exact={true}>
+                    <Route
+                        path="/mongodb"
+                        exact={true}
+                    >
                         <SignUpMongoDB />
                     </Route>
-                    <Route path="/mongodb/log-in" exact={true}>
+                    <Route
+                        path="/mongodb/log-in"
+                        exact={true}
+                    >
                         <LogInMongoDB />
                     </Route>
-                    <Route path="/mongodb/home" exact={true}>
+                    <Route
+                        path="/mongodb/home"
+                        exact={true}
+                    >
                         <HomeMongoDB />
                     </Route>
-                    <Route path="/mongodb/log-out" exact={true}>
+                    <Route
+                        path="/mongodb/log-out"
+                        exact={true}
+                    >
                         <LogOutMongoDB />
                     </Route>
-                    <Route path="/mongoose" exact={true}>
+                    <Route
+                        path="/mongoose"
+                        exact={true}
+                    >
                         <SignUpMongoose />
                     </Route>
-                    <Route path="/mongoose/log-in" exact={true}>
+                    <Route
+                        path="/mongoose/log-in"
+                        exact={true}
+                    >
                         <LogInMongoose />
                     </Route>
-                    <Route path="/mongoose/home" exact={true}>
+                    <Route
+                        path="/mongoose/home"
+                        exact={true}
+                    >
                         <HomeMongoose />
                     </Route>
-                    <Route path="/mongoose/log-out" exact={true}>
+                    <Route
+                        path="/mongoose/log-out"
+                        exact={true}
+                    >
                         <LogOutMongoose />
                     </Route>
-                    <Route path="/mysql" exact={true}>
+                    <Route
+                        path="/mysql"
+                        exact={true}
+                    >
                         <SignUpMySQL />
                     </Route>
-                    <Route path="/mysql/log-in" exact={true}>
+                    <Route
+                        path="/mysql/log-in"
+                        exact={true}
+                    >
                         <LogInMySQL />
                     </Route>
-                    <Route path="/mysql/home" exact={true}>
+                    <Route
+                        path="/mysql/home"
+                        exact={true}
+                    >
                         <HomeMySQL />
                     </Route>
-                    <Route path="/mysql/log-out" exact={true}>
+                    <Route
+                        path="/mysql/log-out"
+                        exact={true}
+                    >
                         <LogOutMySQL />
                     </Route>
-                    <Route path="/sequelize" exact={true}>
+                    <Route
+                        path="/sequelize"
+                        exact={true}
+                    >
                         <SignUpSequelize />
                     </Route>
-                    <Route path="/sequelize/log-in" exact={true}>
+                    <Route
+                        path="/sequelize/log-in"
+                        exact={true}
+                    >
                         <LogInSequelize />
                     </Route>
-                    <Route path="/sequelize/home" exact={true}>
+                    <Route
+                        path="/sequelize/home"
+                        exact={true}
+                    >
                         <HomeSequelize />
                     </Route>
-                    <Route path="/sequelize/log-out" exact={true}>
+                    <Route
+                        path="/sequelize/log-out"
+                        exact={true}
+                    >
                         <LogOutSequelize />
                     </Route>
                 </Switch>

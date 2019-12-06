@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 class LogOut extends Component {
     render() {
-        localStorage.removeItem('user4')
+        localStorage.removeItem('token4')
         this.props.history.replace('/sequelize')
 
         return (

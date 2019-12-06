@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, Carousel } from 'react-bootstrap'
+import {
+    Button,
+    Row,
+    Col,
+    Carousel
+} from 'react-bootstrap'
 import Background3 from '../assets/images/background-3.jpg'
 import Background4 from '../assets/images/background-4.jpg'
 import Background5 from '../assets/images/background-5.jpg'
@@ -49,9 +54,12 @@ export default class Menu extends Component {
                             alignItems: 'center',
                             height: '100%'
                         }}>
-                            <Row noGutters={true} style={{
-                                backgroundColor: 'rgba(64, 64, 64, 0.75)'
-                            }}>
+                            <Row
+                                noGutters={true}
+                                style={{
+                                    backgroundColor: 'rgba(64, 64, 64, 0.75)'
+                                }}
+                            >
                                 <Col>
                                     <h1
                                         className="display-1 text-success"
@@ -63,7 +71,8 @@ export default class Menu extends Component {
                                     >
                                         MongoDB Todo
                                     </h1>
-                                    <Link to="/mongodb"
+                                    <Link
+                                        to="/mongodb"
                                         style={{
                                             color: '#ffffff'
                                         }}
@@ -74,7 +83,7 @@ export default class Menu extends Component {
                                             block={true}
                                         >
                                             MongoDB
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </Col>
                             </Row>
@@ -95,9 +104,12 @@ export default class Menu extends Component {
                             alignItems: 'center',
                             height: '100%'
                         }}>
-                            <Row noGutters={true} style={{
-                                backgroundColor: 'rgba(64, 64, 64, 0.75)'
-                            }}>
+                            <Row
+                                noGutters={true}
+                                style={{
+                                    backgroundColor: 'rgba(64, 64, 64, 0.75)'
+                                }}
+                            >
                                 <Col>
                                     <h1
                                         className="display-1 text-info"
@@ -108,7 +120,7 @@ export default class Menu extends Component {
                                         }}
                                     >
                                         Mongoose Todo
-                        </h1>
+                                    </h1>
                                     <Link
                                         to="/mongoose"
                                         style={{
@@ -121,7 +133,7 @@ export default class Menu extends Component {
                                             block={true}
                                         >
                                             Mongoose
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </Col>
                             </Row>
@@ -142,9 +154,12 @@ export default class Menu extends Component {
                             alignItems: 'center',
                             height: '100%'
                         }}>
-                            <Row noGutters={true} style={{
-                                backgroundColor: 'rgba(64, 64, 64, 0.75)'
-                            }}>
+                            <Row
+                                noGutters={true}
+                                style={{
+                                    backgroundColor: 'rgba(64, 64, 64, 0.75)'
+                                }}
+                            >
                                 <Col>
                                     <h1
                                         className="display-1 text-danger"
@@ -155,7 +170,7 @@ export default class Menu extends Component {
                                         }}
                                     >
                                         MySQL Todo
-                            </h1>
+                                    </h1>
                                     <Link
                                         to="/mysql"
                                         style={{
@@ -168,7 +183,7 @@ export default class Menu extends Component {
                                             block={true}
                                         >
                                             MySQL
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </Col>
                             </Row>
@@ -189,9 +204,12 @@ export default class Menu extends Component {
                             alignItems: 'center',
                             height: '100%'
                         }}>
-                            <Row noGutters={true} style={{
-                                backgroundColor: 'rgba(64, 64, 64, 0.75)'
-                            }}>
+                            <Row
+                                noGutters={true}
+                                style={{
+                                    backgroundColor: 'rgba(64, 64, 64, 0.75)'
+                                }}
+                            >
                                 <Col>
                                     <h1
                                         className="display-1 text-warning"
@@ -202,7 +220,7 @@ export default class Menu extends Component {
                                         }}
                                     >
                                         Sequelize Todo
-                            </h1>
+                                    </h1>
                                     <Link
                                         to="/sequelize"
                                         style={{
@@ -215,7 +233,7 @@ export default class Menu extends Component {
                                             block={true}
                                         >
                                             Sequelize
-                                    </Button>
+                                        </Button>
                                     </Link>
                                 </Col>
                             </Row>

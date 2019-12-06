@@ -39,8 +39,8 @@ export default class Item2 extends Component {
     render() {
         return (
             <ListGroup.Item
-                action={true}
                 variant="success"
+                key={this.props.todo.id}
             >
                 <Row>
                     <Col xs={{

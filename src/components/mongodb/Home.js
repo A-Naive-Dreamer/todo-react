@@ -304,10 +304,11 @@ class Home extends Component {
                                     Uncompleted Task
                                 </Button>
                             </Col>
-                            <Col xs={{
-                                span: 12,
-                                order: 1
-                            }}
+                            <Col
+                                xs={{
+                                    span: 12,
+                                    order: 1
+                                }}
                                 md={{
                                     span: 6,
                                     order: 1
@@ -363,6 +364,7 @@ class Home extends Component {
                                                 handleDelete={this.deleteTodo}
                                                 handleCheck={this.checkOne}
                                                 handleUpdate={this.updateTodo}
+                                                key={item.id}
                                             />
                                         }
                                     })
@@ -400,6 +402,7 @@ class Home extends Component {
                                             return <Item2
                                                 todo={item}
                                                 handleDelete={this.deleteTodo}
+                                                key={item.id}
                                             />
                                         }
                                     })
