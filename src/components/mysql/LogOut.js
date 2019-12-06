@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 class LogOut extends Component {
     render() {
-        localStorage.removeItem('user3')
+        localStorage.removeItem('token3')
         this.props.history.replace('/mysql')
 
         return (

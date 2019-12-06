@@ -13,7 +13,10 @@ import {
 import TeamWork from '../../assets/images/teamwork-1.png'
 import NavBar from './NavBar'
 import Background from '../../assets/images/background-1.jpg'
-import { withRouter, Link } from 'react-router-dom'
+import {
+    withRouter,
+    Link
+} from 'react-router-dom'
 import swal from 'sweetalert'
 
 class SignUp extends Component {
@@ -54,6 +57,7 @@ class SignUp extends Component {
                 text: 'Please fill all field.',
                 icon: 'error'
             })
+
             return null
         }
 
@@ -63,6 +67,7 @@ class SignUp extends Component {
                 text: 'Please fill email field again.',
                 icon: 'error'
             })
+
             return null
         }
 
@@ -70,12 +75,12 @@ class SignUp extends Component {
 
         axios.post(path, this.state)
             .then(result => {
-                console.log(result)
                 if (result.data.message === 'Email have been used!') {
                     swal({
                         text: result.data.message,
                         icon: 'error'
                     })
+
                     return null
                 }
 
@@ -93,7 +98,7 @@ class SignUp extends Component {
     }
 
     render() {
-        let user = localStorage.getItem('user3')
+        let user = localStorage.getItem('token3')
 
         if (user) {
             this.props.history.replace('/mysql/home')
@@ -123,13 +128,25 @@ class SignUp extends Component {
                         <FormGroup>
                             <Image
                                 className="d-block mx-auto"
-                                roundedCircle src={TeamWork} style={{
+                                roundedCircle={true}
+                                src={TeamWork}
+                                style={{
                                     width: '150px',
                                     height: 'auto',
                                     margin: '0 0 25px 0'
-                                }} />
+                                }}
+                            />
                             <Row>
-                                <Col xs={{ span: 12, order: 1 }} md={{ span: 6, order: 1 }}>
+                                <Col
+                                    xs={{
+                                        span: 12,
+                                        order: 1
+                                    }}
+                                    md={{
+                                        span: 6,
+                                        order: 1
+                                    }}
+                                >
                                     <FormControl
                                         type="text"
                                         name="firstName"
@@ -138,7 +155,16 @@ class SignUp extends Component {
                                         onChange={e => this.handleChange(e)}
                                     />
                                 </Col>
-                                <Col xs={{ span: 12, order: 2 }} md={{ span: 6, order: 2 }}>
+                                <Col
+                                    xs={{
+                                        span: 12,
+                                        order: 2
+                                    }}
+                                    md={{
+                                        span: 6,
+                                        order: 2
+                                    }}
+                                >
                                     <FormControl
                                         type="text"
                                         name="lastName"
@@ -175,9 +201,14 @@ class SignUp extends Component {
                             </FormText>
                         </FormGroup>
                         <FormGroup>
-                            <Button variant="primary" block type="button" onClick={e => this.submitForm(e)}>
+                            <Button
+                                variant="primary"
+                                block={true}
+                                type="button"
+                                onClick={e => this.submitForm(e)}
+                            >
                                 Sign Up
-                        </Button>
+                            </Button>
                         </FormGroup>
                     </Form>
                 </div>

@@ -38,31 +38,57 @@ export default class Item2 extends Component {
 
     render() {
         return (
-            <ListGroup.Item action variant="success">
+            <ListGroup.Item
+                action={true}
+                variant="success"
+            >
                 <Row>
-                    <Col xs={{ span: 4, order: 1 }}>
+                    <Col xs={{
+                        span: 4,
+                        order: 1
+                    }}>
                         <div style={{
                             display: this.state.isVisible ? 'none' : 'block'
-                        }}
-                        >
+                        }}>
                             <span style={{
                                 textDecoration: 'line-through'
                             }}>
                                 <span className="text-secondary">
                                     Todo -&nbsp;
-                            </span>
+                                </span>
                                 {
                                     this.props.todo.todo
                                 }
                             </span>
                         </div>
                     </Col>
-                    <Col xs={{ span: 4, offset: 4, order: 2 }} style={{ margin: '0 10px' }}>
-                        <Button variant="outline-danger" size="sm" onClick={() => this.props.handleDelete(this.props.todo.id)} style={{ margin: '0 10px' }}>
-                            <Image roundedCircle src={Delete} alt="Delete" style={{
-                                width: '25px',
-                                height: 'auto'
-                            }} />
+                    <Col
+                        xs={{
+                            span: 4,
+                            offset: 4,
+                            order: 2
+                        }}
+                        style={{
+                            margin: '0 10px'
+                        }}
+                    >
+                        <Button
+                            variant="outline-danger"
+                            size="sm"
+                            onClick={() => this.props.handleDelete(this.props.todo.id)}
+                            style={{
+                                margin: '0 10px'
+                            }}
+                        >
+                            <Image
+                                roundedCircle={true}
+                                src={Delete}
+                                alt="Delete"
+                                style={{
+                                    width: '25px',
+                                    height: 'auto'
+                                }}
+                            />
                         </Button>
                     </Col>
                 </Row>
